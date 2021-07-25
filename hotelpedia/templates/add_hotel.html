@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+<body>
+  <style>
+    add-hotel-container:active {
+      background-color: green;
+    }
+  </style>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}<br><br>
+        <div class="add-hotel-container" style="width: 630px; margin: 0 auto; align-items: center;">
+          <h4 style="font-weight: 700;">You're doing great. Keep going!</h4>
+          <p style="font-weight: 500; font-size: 14px;">Start by telling us your property's name, contact details and address.</p>
+        </div>
+        <div class="add-hotel-container" tabindex="0" style="width: 630px; margin: 0 auto; align-items: center; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+            <div class="form-div-container-2">
+              <label class="label label-padding-2" style="font-size: 20px;">What is the name of your property?</label>
+              {% render_field form.hotel_name class="form-control form-control-edit" %}
+              <p style="width: 400px; font-weight: 500; font-size: 14px; color: gray;">This name will be seen by guests when they search for a place to stay.</p>
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Short description (max 250 letter)</label>
+              {% render_field form.short_description class="form-control form-control-edit" style="height:115px" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Long description (max 2000 letter)</label>
+              {% render_field form.long_description class="form-control form-control-edit" style="height:115px" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Star rating</label>
+              {% render_field form.star class="form-select form-control-edit" %}
+              <br></div>
+            <!-- <div class="form-div-container-2">
+              <label class="label label-padding-2">Property Pictures</label>
+              {% render_field form.picture class="form-control form-control-edit" %}
+            </div> -->
+        <br></div><br>
+          <div class="add-hotel-container" tabindex="2" style="width: 630px; margin: 0 auto; align-items: center;  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px">
+            <div class="form-div-container-2">
+              <h5 style="font-weight: 400; padding: 20px 115px 0 0; font-size: 20px;">Where is your property located?</h5>
+              <label class="label label-padding-2">Street address</label>
+              {% render_field form.street_address class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Address line 2</label>
+              {% render_field form.address_line_2 class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Country/region</label>
+              {% render_field form.country class="form-select form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">City</label>
+              {% render_field form.city class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Post code</label>
+              {% render_field form.post_code class="form-control form-control-edit" %}
+            <br></div>
+            <br></div><br>
+          <div style="font-size: 18px; max-width: 630px; width: 100%; margin: 0 auto;">
+            <input type="submit" value="Next">
+
+          </div>
+    </form>
+
+
+
+
+
+</body>
+{% endblock %}
+

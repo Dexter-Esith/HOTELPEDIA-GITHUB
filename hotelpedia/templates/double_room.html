@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="edit-profile-container">
+        <div class="form-div-container-2">
+          <label class="label label-padding-2">Double room name</label>
+          {% render_field form.double_room_name class="form-select form-control-edit" %}
+        </div>
+        <div class="form-div-container-2">
+          <label class="label label-padding-2"> smoke</label>
+          {% render_field form.smoke class="form-select form-control-edit" %}
+        </div>
+        <div class="form-div-container-2">
+            <label class="label label-padding-2"> single_bed_size</label>
+            {% render_field form.single_bed_size class="form-select form-control-edit" %}
+        </div>
+        <div class="form-div-container-2">
+            <label class="label label-padding-2"> double_bed_size</label>
+            {% render_field form.double_bed_size class="form-select form-control-edit" %}
+        </div>
+        <div class="form-div-container-2">
+            <label class="label label-padding-2"> large_bed_size</label>
+            {% render_field form.large_bed_size class="form-select form-control-edit" %}
+        </div>
+        <div class="form-div-container-2">
+            <label class="label label-padding-2"> capacity</label>
+            {% render_field form.capacity class="form-control form-control-edit" %}
+          </div>
+        <div class="form-div-container-2">
+          <label class="label label-padding-2"> room_size</label>
+          {% render_field form.room_size class="form-control form-control-edit" %}
+        </div>
+      </div>    
+    <button type="submit">save</button>
+</form>
+
+
+{% endblock %}

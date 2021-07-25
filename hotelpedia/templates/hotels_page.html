@@ -1,0 +1,65 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}  
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div id="message_container" class="alert alert-success display-flex" style="justify-content: center;" role="alert">
+	<div>
+		{{message}}
+	</div>
+  </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+  <div class="home-main-div">
+	<div class="hotels-container">
+		<div class="search-container">
+			SEARCH
+		</div>
+		<div class="hotels-container-mother">
+		{% for property in properties %}
+			<div class="hotels-container-child">
+				<div class="hotels-child-image">
+					<a href="{% url 'hotel:seemore' property.id %}"><img src="{{property.picture.url}}" class="hotels-child-image" alt="Hotel Image"/></a>
+				</div>
+				<div class="hotels-child-text">
+					<div>
+						<p>{{property.name}}</p>
+					</div>
+					<div class="last-child">
+						<p class="hotels-child-text-child">
+							{{property.short_description}}
+						</p>
+					</div>
+				</div>
+				<div class="hotels-child-rating">
+					<div class="hotels-child-rating-child">
+						<!-- stars looping at homepage -->
+						{% if property.star %}
+						{% with ''|center:property.star as range %}
+							{% for i in range %}
+								<span class="fa fa-star checked"></span>
+							{% endfor %}
+						{% endwith %}
+						{% endif %}
+					</div>
+					<div>
+						<div>
+							<a href="{% url 'hotel:seemore' property.id %}"> <input class="see-more" type="button" value="See More"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>	
+  </div>
+
+
+{% endblock %}
+
+

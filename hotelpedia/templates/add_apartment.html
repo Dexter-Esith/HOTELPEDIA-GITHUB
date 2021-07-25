@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+<body>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="edit-profile-container">
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Property Name</label>
+              {% render_field form.name class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Property Address</label>
+              {% render_field form.address class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Short Description</label>
+              {% render_field form.short_description class="form-control form-control-edit" style="height:115px" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Long Description</label>
+              {% render_field form.long_description class="form-control form-control-edit" style="height:115px" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Property Pictures</label>
+              {% render_field form.picture class="form-control form-control-edit" %}
+            </div>
+          </div>
+        <input class="see-more" type="submit" value="save">
+    </form>
+</body>
+
+{% endblock %}
+

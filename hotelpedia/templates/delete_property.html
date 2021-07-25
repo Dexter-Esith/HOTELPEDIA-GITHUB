@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<p>Are you sure you want to delete "{{hotel.name}}"?</p>
+<form action="{% url 'hotel:delete_property' hotel.id %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'hotel:myhotels' %}">Cancel</a>
+    <input type="submit" name="Confirm">
+</form>
+
+{% endblock %}

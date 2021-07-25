@@ -1,0 +1,60 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="my-hotels-title-div">
+    <div>
+        <p class="my-hotels-p">My Properties</p>
+    </div>
+    <div>
+        <a href="{% url 'hotel:addhotel' %}"> <input class="add-hotel" type="button" value="Add New Hotel"></a>
+    </div>
+</div>
+<div class="hotels-container">
+    {% for hotel in hotels %}
+        {% if user.is_authenticated and hotel.customer == user %}
+        <div class="hotels-container-child">
+            <div class="hotels-child-image">
+                <a href="{% url 'hotel:seemore' hotel.id %}"><img src="{{hotel.picture.url}}" class="hotels-child-image" alt="Hotel Image"/></a>
+            </div>
+            <div class="hotels-child-text-2">
+                    <div style="display: flex; ">
+                        <p style="max-width: 300px; width: 100%;">{{hotel.name}}</p>
+                        <div class="hotels-child-rating-child-2">
+                            <!-- stars looping at homepage -->
+                            {% with ''|center:hotel.star as range %}
+                                {% for i in range %}
+                                    <span class="fa fa-star checked"></span>
+                                {% endfor %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                <div>
+                    <p style="font-size: 18px;">Hotel Type: {{hotel.hotel_type}}</p>
+                </div>
+                <div class="last-child">
+                    <p class="hotels-child-text-child-2">
+                        {{hotel.short_description}}
+                    </p>
+                </div>
+            </div>
+            <div class="hotels-child-rating">
+                <div class="my-hotels-buttons-div">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown button
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a href="{% url 'hotel:seemore' hotel.id %}"> <input class="" type="button" value="See More"></a>
+                                <a href="{% url 'hotel:edithotel' hotel.id %}"> <input class="" type="button" value="Edit Hotel"></a>
+                                <a href="{% url 'hotel:delete_property' hotel.id %}"> <input class="" type="button" value="Delete Hotel"></a>
+                            </ul>
+                          </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

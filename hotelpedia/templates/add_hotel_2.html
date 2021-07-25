@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+
+<body>
+  <style>
+    add-hotel-container:active {
+      background-color: green;
+    }
+  </style>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}<br><br>
+        <div class="add-hotel-container" style="width: 630px; margin: 0 auto; align-items: center;">
+          <h4 style="font-weight: 700;">You're doing great. Keep going!</h4>
+          <p style="font-weight: 500; font-size: 14px;">Start by telling us your property's name, contact details and address.</p>
+        </div>
+        <div class="add-hotel-container" tabindex="1" style="width: 630px; margin: 0 auto; align-items: center;  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px">
+            <div class="form-div-container-2">
+              <h5 style="font-weight: 400; padding: 20px 0 0 0; font-size: 20px;">What are the contact details for this property?</h5>
+              <label class="label label-padding-2">Contact name</label>
+              {% render_field form.contact_name class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Phone number</label>
+              {% render_field form.contact_mobile_number class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Alternative phone number (optional)</label>
+              {% render_field form.alternative_contact_mobile_number class="form-control form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+              <label class="label label-padding-2">Do you own multiple hotels, or are you part of a property management company or group?</label>
+              {% render_field form.owner class="form-select form-control-edit" %}
+            </div>
+            <div class="form-div-container-2">
+                <label class="label label-padding-2">Room Type</label>
+                {% render_field form.hotel_type class="form-select form-control-edit" %}
+                <p style="width: 400px; font-weight: 500; font-size: 14px; color: gray;">You will be able to add another room when you will complete. (my properties >> choose hotel >> add new room)</p>
+                <br> </div>
+          </div><br>     
+          </div><br>
+          <div style="font-size: 18px; max-width: 630px; width: 100%; margin: 0 auto;">
+            <input type="submit" value="Next">
+
+          </div>
+    </form>
+
+
+
+
+
+</body>
+{% endblock %}
+

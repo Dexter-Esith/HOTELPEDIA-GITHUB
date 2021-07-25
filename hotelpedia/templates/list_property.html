@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="list-property-div">
+    <div>
+        <a href="{% url 'hotel:addhotel' %}">
+            <div>
+                <p>List Your Hotel</p>
+            </div>
+        </a>
+
+        <a href="{% url 'hotel:addapartment' %}">
+            <div>
+                <p>List Your Apartment</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

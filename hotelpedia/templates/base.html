@@ -1,0 +1,141 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<title>Hotelpedia</title>
+
+
+		<!-- FONTAWESOME -->
+		<script src="https://kit.fontawesome.com/69f66b809e.js" crossorigin="anonymous"></script>
+
+		<!-- BOOTSTRAP -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	
+		<!-- MY OWN CSS -->
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" >
+		<link rel="stylesheet" href="{% static 'css/font.css ' %}" />
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'images' %}" />
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<nav>
+					<div class="menu-main-div">
+						<div class="menu" style="justify-content: space-between;">
+							<a href="{% url 'hotel:home' %}" class="logo rem-hyp-under" >
+								<div>Hotel<span>Pedia</span></div>
+							</a>
+							<ul>
+								<a class="rem-hyp-under" href="{% url 'hotel:listproperty' %}"><li class="menu-li">List your property</li></a>
+								<a class="rem-hyp-under" href="#"><li class="menu-li">Flight</li></a>
+								<a class="rem-hyp-under" href="#"><li class="menu-li">Today's Deal</li></a>
+							</ul>
+						</div>
+					</div>
+
+
+
+					{% if user.is_authenticated %}
+					<div class="menu-main-div-2 header-menu-div">
+				<!--=================== START [Drop-down Menu] =====================-->
+				<div class="dropdown own-css-dropdown">
+					<button class="dropdown-button own-btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+						
+						<!--============= START [User image] ============== -->
+					<div class="icon-container">
+						<img src="{{ user.picture.url }}" class="icon">
+					</div>
+					<!-- ================ END [User image] ===============-->
+
+						
+					<!-- ============ START [User name] ============== -->
+						<p class="dropdown-p">Hello, {{user.fname.title}}</p>
+					<!-- ============ END [User name] ============== -->
+
+					</button>
+					<ul class="dropdown-ul dropdown-menu" aria-labelledby="dropdownMenuButton2">
+						<div class="dropdown-ul-main-div">
+							<div class="dropdown-ul-div">
+
+								<a href="{% url 'account:manageaccount' %}" class="rem-hyp-under">
+									<div class="dropdown-icon">
+										<i class="fas fa-user dropdown-menu-padding fas-2"></i>
+										<li class="dropdown-items dropdown-a">Manage Account</li>
+									</div>
+								</a>
+
+								<a href="{% url 'hotel:myhotels' %}" class="rem-hyp-under">
+									<div class="dropdown-icon">
+										<i class="fas fa-house-user dropdown-menu-padding"></i>
+										<li class="dropdown-items dropdown-a">My Properties</li>
+									</div>
+								</a>
+
+								<a href="#" class="rem-hyp-under">									
+									<div class="dropdown-icon">
+										<i class="fas fa-heart dropdown-menu-padding"></i>
+										<li class="dropdown-items dropdown-a">Favorites</li>
+									</div>
+								</a>
+
+								<a  href="#" class="rem-hyp-under">
+									<div class="dropdown-icon">
+										<i class="fas fa-briefcase dropdown-menu-padding"></i>
+										<li class="dropdown-items dropdown-a">Bookings</li>
+									</div>
+								</a>
+
+								<li><hr class="dropdown-divider"></li>
+
+								<a  href="{% url 'account:signout' %}" class="rem-hyp-under">
+									<div class="dropdown-icon">
+										<div class="out">
+											<i class="fas fa-sign-out-alt out"></i>
+										</div>
+										<li class="dropdown-items dropdown-a">Sign Out</li>
+									</div>
+								</a>
+							</div>
+						</div>
+					</ul>
+				</div>
+			<!--=================== END [Drop-down Menu] =====================-->
+
+			<!--=================== START [Sign in and Register] ==================-->
+			{% else %}
+				<div class="myAccount">
+					<div class="ctaGroup">
+						<a href="{% url 'account:signin' %}" class="cta rem-hyp-under">
+							<div>Sign in</div>
+						</a>
+						<a href="{% url 'account:register' %}" class="cta active rem-hyp-under">
+							<div>Register</div>
+						</a>
+					</div>
+				</div>
+			{% endif %}
+			<!--=================== END [Sign in and Register] ==================-->
+					</div>
+
+
+				</nav>
+			</header>
+		</div>
+		<hr class="base-menu-hr">
+
+		{% block content %}
+		{% endblock %}
+
+	</body>
+	<footer class="footer-div">
+		<p style="color: black;">Footer</p>
+	</footer>
+</html>

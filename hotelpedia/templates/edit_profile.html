@@ -1,0 +1,152 @@
+{% extends 'base.html' %} {% load static %} {% block content %} {% load widget_tweaks %}
+  <div class="edit-profile-app-container">
+    <div class="show active">
+      <div class="border rounded">
+        <div class="update-cr-acc">
+            <h3>Personal details</h3>
+        </div>
+        <div>
+            <p style="justify-content: center; display: flex;">Update your information and find out how it's used</p>
+        </div>
+        <div class="update-cr-acc">
+          <hr class="edit-profile-hr">
+        </div>
+        <div class="display-flex justify-content">
+          {% if form.phone.errors %}
+          {% for error in form.phone.errors %}
+          <div class="alert alert-info display-flex justify-content alert-edit" role="alert">
+            <p class="alert-p"></p>{{ error }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info display-flex justify-content alert-edit" role="alert">
+          <p class="alert-p"></p>{{ message }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+        <div class="edit-profile-containers-father">
+          <div class="row align-self-end justify-content-md-center">
+            <div class="col">
+              <!-- START [EDIT FORM} -->
+              <form action="{% url 'account:editprofile' user.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container">
+                            <div class="edit-profile-container">
+
+                              <div class="form-div-container">
+                                <label class="label label-padding">Email</label>
+                                {% render_field form.email class="form-control form-control-edit"%}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">First Name</label>
+                                {% render_field form.fname class="form-control form-control-edit" %}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">Last Name</label>
+                                {% render_field form.lname class="form-control form-control-edit" %}
+                              </div>
+                              <div class="form-div-container-3">
+                                <label class="label label-padding">Phone Number</label>
+                                {% render_field form.phone class="form-control form-control-edit" %}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">Birth Date</label>
+                                {% render_field form.bday class="form-control form-control-edit" type="Date" %}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">Country</label>
+                                {% render_field form.country class="form-select form-control-edit" %}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">Gender</label>
+                                {% render_field form.gender class="form-select form-control-edit" %}
+                              </div>
+                              <div class="form-div-container">
+                                <label class="label label-padding">Profile Picture</label>
+                                <input class="form-control form-control-edit" type="file" name="picture" />
+                              </div>
+                            </div>
+                            <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
+
+
+                            <td><i class="{{ user.country.flag_css }}"></i></td>                </div>
+                <!-- START [SAVE BUTTON} -->
+                <div class="edit-profile-save-btn">
+                  <button type="submit" class="btn-save">Save</button>
+                </div>
+              <!-- END [SAVE BUTTON} -->
+              </form>
+              <!-- END [EDIT FORM} -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+<div class="update-cr-acc">
+    <h3>Create account</h3>
+</div>
+<div class="edit-profile-containers-father">
+    <div class="edit-profile-container">
+        <div class="edit-profile-container">
+            <div class="row align-self-end justify-content-md-center">
+              <div class="col">
+                <form action="{% url 'account:register' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="container">
+                      <br>
+                      {{ form.email }}
+                      <br>
+                      {{ form.fname }}
+                      <br>
+                      {{ form.lname }}
+                      <br>
+                      {{ form.phone }}
+                      <br>
+                      
+                    <button type="submit" class="btn-reg">Register</button>
+                    <br>
+                    <br>
+                    <p class="reg-par">By creating an account you agree to Hotelpedia's <a href="#" class="link-colors rem-hyp-under">Terms & Privacy</a>.</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="edit-profile-container">
+        <div class="edit-profile-container">
+            <div class="row align-self-end justify-content-md-center">
+              <div class="col">
+                <form action="{% url 'account:register' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="container">
+                      <br>
+                      {{ form.bday }}
+                      <br>
+                      {{ form.country }}
+                      <br>
+                      {{ form.gender }}
+                      <br>
+                      {{ form.picture }}
+
+                      <br>
+                    <button type="submit" class="btn-reg">Register</button>
+                    <br>
+                    <br>
+                    <p class="reg-par">By creating an account you agree to Hotelpedia's <a href="#" class="link-colors rem-hyp-under">Terms & Privacy</a>.</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

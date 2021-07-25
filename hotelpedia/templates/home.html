@@ -1,0 +1,160 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}  
+  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <div id="message_container" class="alert alert-success display-flex" style="justify-content: center;" role="alert">
+	<div>
+		{{message}}
+	</div>
+  </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+
+<div class="hotel_content">
+
+	<div class="info">
+	  <h2>Book hotels online</h2>
+	  <p>Lorem ipsum dolor sit.</p>
+	</div>
+
+	<div class="booking_info">
+
+	  <div class="opt">
+		<span class="active">Hotel</span>
+		<span>Homes</span>
+	  </div>
+
+	  <div class="booking_details">
+
+		<div class="item">
+		  <i class="fa fa-search"></i>
+		  Enter a destination
+		</div>
+
+		<div class="item">
+		  <div class="date">31st Dec 2020 <i class="fa fa-angle-down"></i></div>
+		  <div class="days">Thursday</div>
+		</div>
+
+		<div class="item">
+		  <div class="date">31st Dec 2020 <i class="fa fa-angle-down"></i></div>
+		  <div class="days">Thursday</div>
+		</div>
+
+		<div class="item">
+		  <div class="people">2 adults, 0 children <i class="fa fa-angle-down"></i></div>
+		  <div class="days">1 room</div>
+		</div>
+
+		<div class="item">
+		  <div class="cta active">Search</div>
+		</div>
+
+	  </div>
+
+	</div>
+    <script>
+        // suppose the `id` attribute of element is `message_container`.
+        var message_ele = document.getElementById("message_container");
+
+        setTimeout(function(){ 
+          message_ele.style.display = "none"; 
+        }, 3000);
+        // Timeout is 3 sec
+    </script>
+  </div><br><br>
+  <hr>
+  <div class="home-main-div">
+		<div class="home-property-div">
+				{% for hotel in top_hotels %}		
+				<div class="property-pic-div">
+						<img src="{{hotel.picture.url}}" class="home-property-image border-for-property" alt="Hotel Image"/>
+						<div class="property-pic-name">
+							<div style="display: flex; align-items: center;">
+								<p style="padding-right: 10px;" class="property-name-p">{{hotel.hotel_name}}</p>
+								{% with ''|center:hotel.star as range %}
+								{% for i in range %}
+									<span style="padding-right: 5px;" class="fa fa-star checked"></span>
+								{% endfor %}
+								{% endwith %}	
+							</div>
+							<p>
+								{% with ''|center:hotel.star as range %}
+								{% for i in range %}
+									<span class="fa fa-star checked"></span>
+								{% endfor %}
+								{% endwith %}	
+							</p>
+						</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+  </div>
+
+  <div class="property-type-h3-div">
+	<h3 class="property-type-h3">Browse by property type</h3>
+  </div>
+  <div class="property-type-main-div">
+	<div class="property-type-big-div">
+		<div class="property-type-small-div">
+			<div>
+				<img src="{% static 'images/hotel.png' %}" class="property-type-img" alt="Hotel Image"/>
+				<div>
+					<p style="font-size: 16px; font-weight: 700; line-height: 24px; margin-bottom: 0;">
+						rame satauri
+					</p>
+					<p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #6b6b6b;">
+						raodenoba
+					</p>
+				</div>
+			</div>
+			<div>
+				<img src="{% static 'images/hotel.png' %}" class="property-type-img" alt="Hotel Image"/>
+				<div>
+					<p style="font-size: 16px; font-weight: 700; line-height: 24px; margin-bottom: 0;">
+						rame satauri
+					</p>
+					<p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #6b6b6b;">
+						raodenoba
+					</p>
+				</div>
+			</div>
+			<div>
+				<img src="{% static 'images/hotel.png' %}" class="property-type-img" alt="Hotel Image"/>
+				<div>
+					<p style="font-size: 16px; font-weight: 700; line-height: 24px; margin-bottom: 0;">
+						rame satauri
+					</p>
+					<p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #6b6b6b;">
+						raodenoba
+					</p>
+				</div>
+			</div>
+			<div>
+				<img src="{% static 'images/hotel.png' %}" class="property-type-img" alt="Hotel Image"/>
+				<div>
+					<p style="font-size: 16px; font-weight: 700; line-height: 24px; margin-bottom: 0;">
+						rame satauri
+					</p>
+					<p style="font-size: 14px; font-weight: 400; line-height: 20px; color: #6b6b6b;">
+						raodenoba
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+  </div>
+
+
+
+{% endblock %}
+
+

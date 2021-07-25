@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="manage-account-container">
+	<div class="manage-account-main-container">
+		<div class="manage-account-flex-by-row">
+			<nav aria-label="Manage Account" class="manage-account-menu-sidebar">
+				<div class="bui-title manage-account-nav-title bui-title--display-two">
+					<h1 class="bui-title__text">Manage Account</h1>
+					<div class="bui-title__subtitle">Manage your Hotelpedia experience</div>
+				</div>
+				<ul class="manage-account-sections-menu-flex">
+					<li class="manage-account-section-card-wrapper">
+						<a class="manage-account-section-card-content" aria-labelledby="personaldetails_title" href="{% url 'account:editprofile' user.id %}">
+							<div class="manage-account-section-card-inner">
+								<h2 class="manage-account-section-card-title">Personal Details</h2>
+								<div class="manage-account-section-card-subtitle">
+									Update your information and find out how it's user.
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="manage-account-section-card-wrapper">
+						<a class="manage-account-section-card-content" aria-labelledby="personaldetails_title" href="{% url 'account:changepassword' %}">
+							<div class="manage-account-section-card-inner">
+								<h2 class="manage-account-section-card-title">Security</h2>
+								<div class="manage-account-section-card-subtitle">
+									Adjust your security settings and set up two-factor authentication.
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="manage-account-section-card-wrapper">
+						<a class="manage-account-section-card-content" aria-labelledby="personaldetails_title" href="#">
+							<div class="manage-account-section-card-inner">
+								<h2 class="manage-account-section-card-title">Personal Details</h2>
+								<div class="manage-account-section-card-subtitle">
+									Update your information and find out how it's user.
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

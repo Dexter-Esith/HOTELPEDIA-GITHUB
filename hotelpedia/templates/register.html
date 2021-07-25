@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<title>Hotelpedia - Book Online</title>
+
+		
+		<!-- BOOTSTRAP -->
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	
+		<!-- MY OWN CSS -->
+
+		<link href="{% static 'css/main.css' %}" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/font.css ' %}" />
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	</head>
+  <body>
+
+    <div class="d-flex">
+			<header>
+				<nav class="justify-content-md-center">
+					<div class="menu justify-content-md-center">
+						<a href="{% url 'hotel:home' %}" class="reg-logo logo rem-hyp-under" >
+							<div class="reg-logo2">Hotel<span>Pedia</span></div>
+						</a>
+					</div>
+				</nav>
+			</header>
+    </div>
+
+    <div class="container">
+      <div class="reg-form-marg row align-self-end justify-content-md-center">
+        <div class="col-4 rounded border">
+          <form action="{% url 'account:register' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+              <br>
+              <div class="reg-cr-acc">
+                <h3>Create account</h3>
+              </div>
+                <br>
+                {% for div in form %}
+                {{ div }}
+                <br>
+                {% endfor %}
+              <button type="submit" class="btn-reg">Register</button>
+              <br>
+              <br>
+              <p class="reg-par">By creating an account you agree to Hotelpedia's <a href="#" class="link-colors rem-hyp-under">Terms & Privacy</a>.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-log">
+      <div class="log-form-marg row justify-content-md-center">
+        <div class="col-3 rounded container-log">
+          <div class="container-log log-from-reg-div">
+            <div>
+              <h3 class="log-title">Alredy have an account?</h3>
+            </div>
+            <a href="{% url 'account:signin' %}">
+              <button class="btn-log">Sign in to Hotelpedia</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+	</body>
+</html>
+
+
+
+{% if messages %}
+{% for message in messages %}  
+{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+<div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+          <p style="color: red">{{message}}</p>
+  </div>
+</div>
+{% endif %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING%}
+<div class="alert alert-warning d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+  <div>
+      {{message}}
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}

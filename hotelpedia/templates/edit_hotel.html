@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+    {% for hotel in edit %}
+        {{hotel}}
+    {% endfor %}
+</body>
+
+{% endblock %}
